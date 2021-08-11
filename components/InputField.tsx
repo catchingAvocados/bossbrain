@@ -1,19 +1,17 @@
 import { InputHTMLAttributes } from 'react'
+import Input from './Input'
 
 export type InputFieldProps = (InputHTMLAttributes<HTMLInputElement> | InputHTMLAttributes<HTMLTextAreaElement>) & {
   label?: string
   multiline?: boolean
 }
 
-export default function InputField({ id, label, placeholder, multiline = false, ...rest }: InputFieldProps) {
+export default function InputField({ id, label, className = '', ...rest }: InputFieldProps) {
+  const classes = `flex flex-col ${className}`
   return (
-    <div>
+    <div className={classes}>
       <label htmlFor={id}>{label}</label>
-      {
-        multiline
-          ? <textarea id={id} name={id} placeholder={placeholder} rows={4} {...rest as InputHTMLAttributes<HTMLTextAreaElement>} />
-          : <input id={id} name={id} placeholder={placeholder} {...rest as InputHTMLAttributes<HTMLInputElement>} />
-      }
+      <Input id={id} name={id} {...rest} />
     </div>
   )
 }

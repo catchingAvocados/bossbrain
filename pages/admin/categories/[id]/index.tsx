@@ -34,6 +34,7 @@ export default function AdminCategoryPage({ category }: AdminCategoryPageProps) 
         <a>Edit</a>
       </Link>
       <h1>{category.name}</h1>
+      <p>{category.description}</p>
       <h2>Quizzes</h2>
     </Layout>
   )
