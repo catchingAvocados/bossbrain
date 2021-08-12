@@ -1,3 +1,4 @@
+import { withPageAuthRequired } from '@auth0/nextjs-auth0'
 import CategoryForm from '@components/CategoryForm'
 import Layout from '@components/Layout'
 import { CategoryInputs } from '@data/categories/interfaces/Category'
@@ -25,3 +26,5 @@ export default function AdminCategoryCreatePage() {
     </Layout>
   )
 }
+
+export const getServerSideProps = withPageAuthRequired()

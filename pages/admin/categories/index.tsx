@@ -1,7 +1,8 @@
+import { withPageAuthRequired } from '@auth0/nextjs-auth0'
 import Layout from '@components/Layout'
 import Category from '@data/categories/interfaces/Category'
-import Link from 'next/link'
 import categoryRepository from '@data/categories/repository'
+import Link from 'next/link'
 
 interface AdminCategoriesPageProps {
   categories: Category[]
@@ -31,10 +32,12 @@ export default function AdminCategoriesPage({ categories = [] }: AdminCategories
   )
 }
 
-export async function getServerSideProps() {
-  return {
-    props: {
-      categories: await categoryRepository.getCategories(),
+export const getServerSideProps = withPageAuthRequired({
+  async getServerSideProps() {
+    return {
+      props: {
+        categories: await categoryRepository.getCategories(),
+      }
     }
   }
-}
+})

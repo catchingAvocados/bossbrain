@@ -1,3 +1,4 @@
+import { withPageAuthRequired } from '@auth0/nextjs-auth0'
 import Layout from '@components/Layout'
 import Category from '@data/categories/interfaces/Category'
 import categoryRepository from '@data/categories/repository'
@@ -40,4 +41,6 @@ export default function AdminCategoryPage({ category }: AdminCategoryPageProps) 
   )
 }
 
-export const getServerSideProps = categoryServerSidePropsHandler
+export const getServerSideProps = withPageAuthRequired({
+  getServerSideProps: categoryServerSidePropsHandler
+})
